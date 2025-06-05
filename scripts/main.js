@@ -5,6 +5,7 @@ import { showAppUI, showLoginUI } from "./dom.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const user = loadUserSession();
+
   if (user) {
     showAppUI(user);
   } else {

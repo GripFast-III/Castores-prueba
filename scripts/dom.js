@@ -1,7 +1,5 @@
 export function showAppUI(user) {
-  document.getElementById("auth-section").style.display = "none";
-  document.getElementById("register-section").style.display = "none";
-  document.getElementById("app-section").style.display = "block";
+  toggleSection("app");
   document.getElementById(
     "username-display"
   ).textContent = `Bienvenue, ${user.username}`;
@@ -14,7 +12,39 @@ export function showAppUI(user) {
 }
 
 export function showLoginUI() {
-  document.getElementById("app-section").style.display = "none";
-  document.getElementById("register-section").style.display = "none";
-  document.getElementById("auth-section").style.display = "block";
+  toggleSection("auth");
+}
+
+export function showRegisterUI() {
+  toggleSection("register");
+}
+
+function toggleSection(section) {
+  const auth = document.getElementById("auth-section");
+  const reg = document.getElementById("register-section");
+  const app = document.getElementById("app-section");
+
+  auth.style.display = section === "auth" ? "block" : "none";
+  reg.style.display = section === "register" ? "block" : "none";
+  app.style.display = section === "app" ? "block" : "none";
+}
+
+export function renderVideoResults(videos) {
+  const container = document.getElementById("video-results");
+  container.innerHTML = "";
+
+  videos.forEach((video) => {
+    const { title, thumbnails } = video.snippet;
+    const videoId = video.id.videoId;
+
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.innerHTML = `
+      <img src="${thumbnails.medium.url}" alt="${title}" />
+      <p>${title}</p>
+      <button data-id="${videoId}" class="fav-btn">Ajouter aux favoris</button>
+    `;
+
+    container.appendChild(card);
+  });
 }

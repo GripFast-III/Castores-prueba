@@ -6,7 +6,36 @@ export function initAuthHandlers() {
   const registerForm = document.getElementById("register-form");
 
   loginForm.addEventListener("submit", handleLogin);
-  registerForm.addEventListener("submit", handleRegister);
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const captchaResponse = grecaptcha.getResponse();
+    if (!captchaResponse) {
+      alert("Veuillez confirmer que vous n'êtes pas un robot.");
+      return;
+    }
+
+    const user = {
+      firstName: document.getElementById("first-name").value,
+      lastName: document.getElementById("last-name").value,
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+    };
+
+    const confirmPassword = document.getElementById("confirm-password").value;
+    if (user.password !== confirmPassword) {
+      alert("Les mots de passe ne correspondent pas");
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    users.push(user);
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Inscription réussie ! Connecte-toi.");
+    grecaptcha.reset(); // remet le captcha à zéro après soumission
+    showLoginUI();
+  });
 
   document.getElementById("show-register").addEventListener("click", (e) => {
     e.preventDefault();

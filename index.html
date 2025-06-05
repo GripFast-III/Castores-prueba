@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InnovaTube</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
+
   <body>
     <header>
       <h1>InnovaTube</h1>
@@ -62,6 +64,13 @@
             placeholder="Confirmer le mot de passe"
             required
           />
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+          >
+            <!--Key test from Google-->
+          </div>
+
           <button type="submit">S'inscrire</button>
         </form>
         <p><a href="#" id="show-login">Déjà inscrit ? Connexion</a></p>

@@ -11,6 +11,11 @@ export function showAppUI(user) {
   });
 
   renderFavorites();
+
+  const favSearchInput = document.getElementById("favorites-search-input");
+  favSearchInput.addEventListener("input", () => {
+    renderFavorites();
+  });
 }
 
 export function showLoginUI() {
@@ -77,10 +82,17 @@ export function renderVideoResults(videos) {
 export function renderFavorites() {
   const user = loadUserSession();
   const container = document.getElementById("favorites");
-  const favorites = getFavorites(user.username);
+  const searchInput = document.getElementById("favorites-search-input");
+  const searchTerm = searchInput?.value?.trim().toLowerCase() || "";
+
+  const allFavorites = getFavorites(user.username);
+  const filteredFavorites = allFavorites.filter((video) =>
+    video.snippet.title.toLowerCase().includes(searchTerm)
+  );
+
   container.innerHTML = "";
 
-  favorites.forEach((video) => {
+  filteredFavorites.forEach((video) => {
     const { title, thumbnails } = video.snippet;
     const videoId = video.id.videoId;
 
@@ -93,10 +105,9 @@ export function renderFavorites() {
     `;
 
     card.querySelector(".remove-fav-btn").addEventListener("click", () => {
-      const updated = favorites.filter((v) => v.id.videoId !== videoId);
+      const updated = allFavorites.filter((v) => v.id.videoId !== videoId);
       saveFavorites(user.username, updated);
       renderFavorites();
-      renderVideoResults([]); // facultatif : vider les résultats
     });
 
     container.appendChild(card);

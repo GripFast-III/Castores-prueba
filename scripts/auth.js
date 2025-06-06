@@ -1,5 +1,6 @@
 import { saveUserSession } from "./storage.js";
 import { showAppUI, showLoginUI, showRegisterUI } from "./dom.js";
+import { showResetUI } from "./dom.js";
 
 export function initAuthHandlers() {
   const loginForm = document.getElementById("login-form");
@@ -46,6 +47,22 @@ export function initAuthHandlers() {
     e.preventDefault();
     showLoginUI();
   });
+
+  document
+    .getElementById("forgot-password-link")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      showResetUI();
+    });
+
+  document.getElementById("back-to-login").addEventListener("click", (e) => {
+    e.preventDefault();
+    showLoginUI();
+  });
+
+  document
+    .getElementById("reset-form")
+    .addEventListener("submit", handlePasswordReset);
 }
 
 function handleLogin(e) {
@@ -90,5 +107,32 @@ function handleRegister(e) {
   localStorage.setItem("users", JSON.stringify(users));
 
   alert("Inscription réussie ! Connecte-toi.");
+  showLoginUI();
+}
+
+function handlePasswordReset(e) {
+  e.preventDefault();
+
+  const email = document.getElementById("reset-email").value;
+  const newPassword = document.getElementById("new-password").value;
+  const confirmPassword = document.getElementById("confirm-new-password").value;
+
+  if (newPassword !== confirmPassword) {
+    alert("Les mots de passe ne correspondent pas");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+  const userIndex = users.findIndex((u) => u.email === email);
+
+  if (userIndex === -1) {
+    alert("Aucun compte trouvé avec cet email");
+    return;
+  }
+
+  users[userIndex].password = newPassword;
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Mot de passe mis à jour. Tu peux maintenant te reconnecter.");
   showLoginUI();
 }

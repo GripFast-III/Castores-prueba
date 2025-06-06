@@ -35,6 +35,7 @@
             required
           />
           <button type="submit">Se connecter</button>
+          <p><a href="#" id="forgot-password-link">Mot de passe oublié ?</a></p>
         </form>
         <p><a href="#" id="show-register">Créer un compte</a></p>
       </section>
@@ -74,6 +75,28 @@
           <button type="submit">S'inscrire</button>
         </form>
         <p><a href="#" id="show-login">Déjà inscrit ? Connexion</a></p>
+      </section>
+
+      <!-- Réinitialisation du mot de passe -->
+      <section id="reset-section" style="display: none">
+        <h2>Réinitialisation du mot de passe</h2>
+        <form id="reset-form">
+          <input type="email" id="reset-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="new-password"
+            placeholder="Nouveau mot de passe"
+            required
+          />
+          <input
+            type="password"
+            id="confirm-new-password"
+            placeholder="Confirmer le mot de passe"
+            required
+          />
+          <button type="submit">Réinitialiser</button>
+        </form>
+        <p><a href="#" id="back-to-login">Retour à la connexion</a></p>
       </section>
 
       <!-- App principale -->

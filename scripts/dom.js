@@ -2,7 +2,7 @@ export function showAppUI(user) {
   toggleSection("app");
   document.getElementById(
     "username-display"
-  ).textContent = `Bienvenue, ${user.username}`;
+  ).textContent = `Hello, ${user.username}`;
   document.getElementById("logout-btn").style.display = "inline-block";
 
   document.getElementById("logout-btn").addEventListener("click", () => {

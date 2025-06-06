@@ -1,68 +1,70 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InnovaTube</title>
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/styles.css" />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="scripts/particles.min.js"></script>
   </head>
 
   <body>
+    <div id="particles-js"></div>
     <header>
       <h1>InnovaTube</h1>
       <div id="user-info">
         <span id="username-display"></span>
-        <button id="logout-btn" style="display: none">Déconnexion</button>
+        <button id="logout-btn" style="display: none">Log out</button>
       </div>
     </header>
 
     <main>
-      <!-- Connexion -->
+      <!-- Log in -->
       <section id="auth-section">
         <h2>Connexion</h2>
         <form id="login-form">
           <input
             type="text"
             id="login-identifier"
-            placeholder="Email ou nom d'utilisateur"
+            placeholder="Email or Username"
             required
           />
           <input
             type="password"
             id="login-password"
-            placeholder="Mot de passe"
+            placeholder="Password"
             required
           />
-          <button type="submit">Se connecter</button>
-          <p><a href="#" id="forgot-password-link">Mot de passe oublié ?</a></p>
+          <button type="submit">Log in</button>
+          <p><a href="#" id="forgot-password-link">Forgot password ?</a></p>
         </form>
-        <p><a href="#" id="show-register">Créer un compte</a></p>
+        <p><a href="#" id="show-register">Sign in</a></p>
       </section>
 
       <!-- Inscription -->
       <section id="register-section" style="display: none">
         <h2>Inscription</h2>
         <form id="register-form">
-          <input type="text" id="first-name" placeholder="Prénom" required />
-          <input type="text" id="last-name" placeholder="Nom" required />
           <input
             type="text"
-            id="username"
-            placeholder="Nom d'utilisateur"
+            id="first-name"
+            placeholder="First name"
             required
           />
+          <input type="text" id="last-name" placeholder="Last name" required />
+          <input type="text" id="username" placeholder="Username" required />
           <input type="email" id="email" placeholder="Email" required />
           <input
             type="password"
             id="password"
-            placeholder="Mot de passe"
+            placeholder="Password"
             required
           />
           <input
             type="password"
             id="confirm-password"
-            placeholder="Confirmer le mot de passe"
+            placeholder="Confirm password"
             required
           />
           <div
@@ -72,55 +74,63 @@
             <!--Key test from Google-->
           </div>
 
-          <button type="submit">S'inscrire</button>
+          <button type="submit">Sign in</button>
         </form>
-        <p><a href="#" id="show-login">Déjà inscrit ? Connexion</a></p>
+        <p><a href="#" id="show-login">Already a member? Log in</a></p>
       </section>
 
       <!-- Réinitialisation du mot de passe -->
       <section id="reset-section" style="display: none">
-        <h2>Réinitialisation du mot de passe</h2>
+        <h2>Reset password</h2>
         <form id="reset-form">
           <input type="email" id="reset-email" placeholder="Email" required />
           <input
             type="password"
             id="new-password"
-            placeholder="Nouveau mot de passe"
+            placeholder="New password"
             required
           />
           <input
             type="password"
             id="confirm-new-password"
-            placeholder="Confirmer le mot de passe"
+            placeholder="Confirm password"
             required
           />
-          <button type="submit">Réinitialiser</button>
+          <button type="submit">Reset</button>
         </form>
-        <p><a href="#" id="back-to-login">Retour à la connexion</a></p>
+        <p><a href="#" id="back-to-login">Back to main page</a></p>
       </section>
 
       <!-- App principale -->
       <section id="app-section" style="display: none">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Rechercher une vidéo YouTube…"
-        />
-        <button id="search-btn">Rechercher</button>
+        <div id="search-favorites">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search video on YouTube…"
+          />
+          <button id="search-btn">Search</button>
+        </div>
 
-        <h3>Résultats</h3>
+        <h3>Results</h3>
         <div id="video-results"></div>
 
-        <h3>Favoris</h3>
+        <h3>Favorites</h3>
         <input
           type="text"
           id="favorites-search-input"
-          placeholder="Rechercher dans les favoris..."
+          placeholder="Search into favorites..."
         />
         <div id="favorites"></div>
       </section>
     </main>
 
     <script type="module" src="scripts/main.js"></script>
+    <script src="scripts/particles.min.js"></script>
+    <script>
+      particlesJS.load("particles-js", "particles.json", function () {
+        console.log("particles.js loaded - callback");
+      });
+    </script>
   </body>
 </html>

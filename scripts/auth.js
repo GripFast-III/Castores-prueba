@@ -59,7 +59,7 @@ export function initAuthHandlers() {
 
     grecaptcha.reset();
     alert("Inscription successful.");
-    console.log(`[INSCRIPTION] User saved : ${user.username}`);
+    console.log(`[REGISTER] New account created : ${user.username}`);
 
     showLoginUI();
   });
@@ -109,36 +109,13 @@ async function handleLogin(e) {
   );
 
   if (user) {
+    console.log(`[LOGIN] User connected : ${user.username}`);
     saveUserSession(user);
     showAppUI(user);
   } else {
     alert("Wrong login informations");
+    console.warn(`[LOGIN] Failed : Wrong informations for "${identifier}"`);
   }
-}
-
-function handleRegister(e) {
-  e.preventDefault();
-
-  const user = {
-    firstName: document.getElementById("first-name").value,
-    lastName: document.getElementById("last-name").value,
-    username: document.getElementById("username").value,
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
-  };
-  const confirmPassword = document.getElementById("confirm-password").value;
-
-  if (user.password !== confirmPassword) {
-    alert("Passwords don't match");
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  users.push(user);
-  localStorage.setItem("users", JSON.stringify(users));
-
-  alert("Success");
-  showLoginUI();
 }
 
 function handlePasswordReset(e) {
@@ -157,11 +134,13 @@ function handlePasswordReset(e) {
   const userIndex = users.findIndex((u) => u.email === email);
 
   if (userIndex === -1) {
+    console.warn(`[RESET] Error : No account found with this email ${email}`);
     alert("No account found with this email");
     return;
   }
 
   users[userIndex].password = newPassword;
+  console.log(`[RESET] New password saved for ${email}`);
   localStorage.setItem("users", JSON.stringify(users));
 
   alert("Password updated, you can now log in.");

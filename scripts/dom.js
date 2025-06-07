@@ -6,6 +6,7 @@ export function showAppUI(user) {
   document.getElementById("logout-btn").style.display = "inline-block";
 
   document.getElementById("logout-btn").addEventListener("click", () => {
+    console.log(`[LOGOUT] ${user.username} disconnected`);
     localStorage.removeItem("session");
     location.reload();
   });
@@ -67,9 +68,11 @@ export function renderVideoResults(videos) {
       if (isFavorite) {
         const newFavs = favorites.filter((v) => v.id.videoId !== videoId);
         saveFavorites(user.username, newFavs);
+        console.log(`[FAVORTE] Removed : "${title}"`);
       } else {
         favorites.push(video);
         saveFavorites(user.username, favorites);
+        console.log(`[FAVORITE] Added : "${title}"`);
       }
       renderVideoResults(videos); // refresh
       renderFavorites(); // update favorites section
@@ -107,6 +110,7 @@ export function renderFavorites() {
     card.querySelector(".remove-fav-btn").addEventListener("click", () => {
       const updated = allFavorites.filter((v) => v.id.videoId !== videoId);
       saveFavorites(user.username, updated);
+      console.log(`[FAVORITE] Removed from favorite : "${title}"`);
       renderFavorites();
     });
 

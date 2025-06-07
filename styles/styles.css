@@ -16,7 +16,7 @@ header h1 {
   top: 0;
   left: 0;
   z-index: -1;
-  background-color: #a0c1e4;
+  background-color: #0271e6;
 }
 
 main {
@@ -32,7 +32,7 @@ button {
 
 button {
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #2cb505;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -41,6 +41,12 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+#forgot-password-link,
+#show-register {
+  color: black;
+  text-decoration: underline;
 }
 
 #video-results {
@@ -100,6 +106,10 @@ button:hover {
 #favorites-search-input {
   display: flex;
   width: 100%;
+}
+
+.remove-fav-btn {
+  background-color: red;
 }
 
 #auth-section p,

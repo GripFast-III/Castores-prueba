@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InnovaTube</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="scripts/particles.min.js"></script>
@@ -16,7 +20,7 @@
       <div id="user-info">
         <span id="username-display"></span>
         <!--<button id="logout-btn" style="display: none">Log out</button>-->
-        <button id="logout-btn">
+        <button id="logout-btn" style="display: none">
           <span class="logout-text">Log out</span>
           <span class="logout-icon">⎋</span>
         </button>
@@ -28,18 +32,22 @@
       <section id="auth-section">
         <h2>Connexion</h2>
         <form id="login-form">
-          <input
-            type="text"
-            id="login-identifier"
-            placeholder="Email or Username"
-            required
-          />
-          <input
-            type="password"
-            id="login-password"
-            placeholder="Password"
-            required
-          />
+          <div class="input-field">
+            <input
+              type="text"
+              id="login-identifier"
+              placeholder="Email or Username"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Password"
+              required
+            />
+          </div>
           <button type="submit">Log in</button>
           <p><a href="#" id="forgot-password-link">Forgot password ?</a></p>
         </form>
@@ -50,27 +58,44 @@
       <section id="register-section" style="display: none">
         <h2>Inscription</h2>
         <form id="register-form">
-          <input
-            type="text"
-            id="first-name"
-            placeholder="First name"
-            required
-          />
-          <input type="text" id="last-name" placeholder="Last name" required />
-          <input type="text" id="username" placeholder="Username" required />
-          <input type="email" id="email" placeholder="Email" required />
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            id="confirm-password"
-            placeholder="Confirm password"
-            required
-          />
+          <div class="input-field">
+            <input
+              type="text"
+              id="first-name"
+              placeholder="First name"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="text"
+              id="last-name"
+              placeholder="Last name"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input type="text" id="username" placeholder="Username" required />
+          </div>
+          <div class="input-field">
+            <input type="email" id="email" placeholder="Email" required />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Confirm password"
+              required
+            />
+          </div>
           <div
             class="g-recaptcha"
             data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
@@ -87,19 +112,25 @@
       <section id="reset-section" style="display: none">
         <h2>Reset password</h2>
         <form id="reset-form">
-          <input type="email" id="reset-email" placeholder="Email" required />
-          <input
-            type="password"
-            id="new-password"
-            placeholder="New password"
-            required
-          />
-          <input
-            type="password"
-            id="confirm-new-password"
-            placeholder="Confirm password"
-            required
-          />
+          <div class="input-field">
+            <input type="email" id="reset-email" placeholder="Email" required />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="new-password"
+              placeholder="New password"
+              required
+            />
+          </div>
+          <div class="input-field">
+            <input
+              type="password"
+              id="confirm-new-password"
+              placeholder="Confirm password"
+              required
+            />
+          </div>
           <button type="submit">Reset</button>
         </form>
         <p><a href="#" id="back-to-login">Back to main page</a></p>
@@ -108,11 +139,13 @@
       <!-- App principale -->
       <section id="app-section" style="display: none">
         <div id="search-favorites">
-          <input
-            type="text"
-            id="search-input"
-            placeholder="Search video on YouTube…"
-          />
+          <div class="input-field">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search video on YouTube…"
+            />
+          </div>
           <button id="search-btn">Search</button>
         </div>
 
@@ -120,11 +153,13 @@
         <div id="video-results"></div>
 
         <h3>Favorites</h3>
-        <input
-          type="text"
-          id="favorites-search-input"
-          placeholder="Search into favorites..."
-        />
+        <div class="input-field">
+          <input
+            type="text"
+            id="favorites-search-input"
+            placeholder="Search into favorites..."
+          />
+        </div>
         <div id="favorites"></div>
       </section>
     </main>
@@ -136,5 +171,6 @@
         console.log("particles.js loaded - callback");
       });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>

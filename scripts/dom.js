@@ -58,7 +58,7 @@ export function renderVideoResults(videos) {
       <img src="${thumbnails.medium.url}" alt="${title}" />
       <p>${title}</p>
       <button data-id="${videoId}" class="fav-btn">
-        ${isFavorite ? "Retirer des favoris" : "Ajouter aux favoris"}
+        ${isFavorite ? "Remove from favorites" : "Add to favorites"}
       </button>
     `;
 
@@ -101,7 +101,7 @@ export function renderFavorites() {
     card.innerHTML = `
       <img src="${thumbnails.medium.url}" alt="${title}" />
       <p>${title}</p>
-      <button data-id="${videoId}" class="remove-fav-btn">Retirer</button>
+      <button data-id="${videoId}" class="remove-fav-btn">Remove</button>
     `;
 
     card.querySelector(".remove-fav-btn").addEventListener("click", () => {
